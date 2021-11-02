@@ -1,16 +1,18 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
+import styled from "styled-components";
+
+const AppWrapper = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
+    <AppWrapper>
+      <Text>Universal React Native with Expo</Text>
+      <Text>Deji Adelanwa</Text>
+    </AppWrapper>
   );
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Text } from "react-native";
+
 import styled from "styled-components";
+import Decks from "./components/Decks";
 
 const AppWrapper = styled.View`
   flex: 1;
@@ -11,8 +12,7 @@ const AppWrapper = styled.View`
 export default function App() {
   return (
     <AppWrapper>
-      <Text>Universal React Native with Expo</Text>
-      <Text>Deji Adelanwa</Text>
+      <Decks />
     </AppWrapper>
   );
 }

@@ -13,7 +13,7 @@ const DeckWrapper = styled.View`
   margin-top: 10px;
 `;
 
-const Deck = ({ title, numOfCards }) => {
+const Deck = ({ title, numOfCards onPr }) => {
   return (
     <TouchableOpacity>
       <DeckWrapper>

@@ -22,17 +22,32 @@ const decks = {
       },
     ],
   },
+  Redux: {
+    title: "Redux",
+    questions: [
+      {
+        question: "What is a thunk?",
+        answer:
+          "The combination of a function and the lexical environment within which that function was declared.",
+      },
+      {
+        question: "What is a store?",
+        answer:
+          "A store is a combination of a state with all the methods to interact with the state",
+      },
+    ],
+  },
 };
 
-const getDecks = () => {
+export function getDecks() {
   return decks;
-};
+}
 
-const getDeck = (id) => {
+export function getDeck(id) {
   return decks[id];
-};
+}
 
-const saveDeckTitle = (title) => {
+export function saveDeckTitle(title) {
   return {
     ...decks,
     [title]: {
@@ -40,7 +55,7 @@ const saveDeckTitle = (title) => {
       questions: [],
     },
   };
-};
+}
 
 // const addCardToDeck = (title,card)=>{
 //     return decks[title]

@@ -1,32 +1,38 @@
 import * as React from "react";
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import styled from "styled-components";
-// import Decks from "./views/Decks";
-// import DeckDetails from "./views/DeckDetails";
-// import NewCard from "./views/NewCard";
-// import NewDeck from "./views/NewDeck";
-import Quiz from "./views/Quiz";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
-// const Stack = createNativeStackNavigator();
+import Decks from "./views/Decks";
+import NewDeck from "./views/NewDeck";
 
-const AppWrapper = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <AppWrapper>
-    //       <Stack.Screen name="Home" component={Decks} />
-    //     </AppWrapper>
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-    <AppWrapper>
-      <Quiz />
-    </AppWrapper>
+    <NavigationContainer>
+      <Tab.Navigator
+        initialRouteName="Decks"
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === "Decks") {
+              iconName = focused ? "file-tray-full" : "file-tray-full-outline";
+            } else if (route.name === "Add Deck") {
+              iconName = focused ? "add-circle" : "add-circle-outline";
+            }
+
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+
+          tabBarActiveTintColor: "purple",
+          tabBarInactiveTintColor: "gray",
+        })}
+      >
+        <Tab.Screen name="Decks" component={Decks} />
+        <Tab.Screen name="Add Deck" component={NewDeck} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }

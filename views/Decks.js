@@ -4,11 +4,18 @@ import { FlatList } from "react-native";
 import Deck from "../components/Deck";
 import { getDecks } from "../Data";
 
-const Decks = () => {
+const Decks = ({ navigation }) => {
   const decks = getDecks();
+  function routeToDetails() {
+    navigation.navigate("DeckDetails");
+  }
 
   const renderItem = ({ item }) => (
-    <Deck title={decks[item].title} numOfCards={decks[item].questions.length} />
+    <Deck
+      title={decks[item].title}
+      numOfCards={decks[item].questions.length}
+      onPress={routeToDetails}
+    />
   );
   return (
     <FlatList

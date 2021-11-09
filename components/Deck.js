@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+
 import styled from "styled-components";
 
 const DeckWrapper = styled.View`
@@ -13,12 +14,14 @@ const DeckWrapper = styled.View`
   margin-top: 10px;
 `;
 
-const Deck = ({ title, numOfCards onPr }) => {
+const Deck = ({ title, numOfCards, onPress }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <DeckWrapper>
-        <Text style={{ color: "white", fontSize: "30px" }}>{title}</Text>
-        <Text style={{ color: "white" }}>{numOfCards} Cards</Text>
+        <Text style={{ color: "white", fontSize: 30 }}>{title}</Text>
+        <Text style={{ color: "white", fontSize: 15 }}>
+          {numOfCards > 1 ? `${numOfCards} Cards` : `${numOfCards} Card`}
+        </Text>
       </DeckWrapper>
     </TouchableOpacity>
   );

@@ -14,13 +14,18 @@ const DeckWrapper = styled.View`
   margin-top: 10px;
 `;
 
-const Deck = ({ title, numOfCards, onPress }) => {
+const Deck = ({ deck, navigation }) => {
+  function routeToDetails() {
+    navigation.navigate("Deck Details", deck);
+  }
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={routeToDetails}>
       <DeckWrapper>
-        <Text style={{ color: "white", fontSize: 30 }}>{title}</Text>
+        <Text style={{ color: "white", fontSize: 30 }}>{deck.title}</Text>
         <Text style={{ color: "white", fontSize: 15 }}>
-          {numOfCards > 1 ? `${numOfCards} Cards` : `${numOfCards} Card`}
+          {deck.questions.length > 1
+            ? `${deck.questions.length} Cards`
+            : `${deck.questions.length} Card`}
         </Text>
       </DeckWrapper>
     </TouchableOpacity>

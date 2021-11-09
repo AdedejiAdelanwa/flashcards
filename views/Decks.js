@@ -6,16 +6,9 @@ import { getDecks } from "../Data";
 
 const Decks = ({ navigation }) => {
   const decks = getDecks();
-  function routeToDetails() {
-    navigation.navigate("DeckDetails");
-  }
 
   const renderItem = ({ item }) => (
-    <Deck
-      title={decks[item].title}
-      numOfCards={decks[item].questions.length}
-      onPress={routeToDetails}
-    />
+    <Deck deck={decks[item]} navigation={navigation} />
   );
   return (
     <FlatList

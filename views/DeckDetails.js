@@ -18,7 +18,7 @@ const DetailCardWrapper = styled.View`
   background-color: #fff;
   border-radius: 2px;
 `;
-const ButtonWrapper = styled.View`
+export const ButtonWrapper = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +44,7 @@ const DeckDetails = ({ route, navigation }) => {
     <DetailWrapper>
       <DetailCardWrapper>
         <Text style={{ fontSize: 30 }}> {deck.title}</Text>
-        <Text style={{ fontSize: 20 }}>Cards : {numOfCards}</Text>
+        <Text style={{ fontSize: 20 }}> {numOfCards} Cards</Text>
         <TouchableOpacity onPress={routeToQuiz}>
           <ButtonWrapper style={{ backgroundColor: "purple" }}>
             <Text style={{ color: "#fff" }}>Start Quiz</Text>

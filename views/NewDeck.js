@@ -21,7 +21,6 @@ const AddDeckCard = styled.View`
 `;
 
 export const TextInputWrapper = styled.TextInput`
-  width: 250px;
   padding: 15px;
   background-color: #eee;
   border-radius: 3px;
@@ -52,6 +51,7 @@ const NewDeck = ({ navigation }) => {
         <Text>Deck Title:</Text>
 
         <TextInputWrapper
+          style={{ width: 250 }}
           value={title}
           placeholder="Type title here"
           onChangeText={(title) => setTitle(title)}

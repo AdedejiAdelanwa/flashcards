@@ -41,23 +41,9 @@ export const decks = {
   },
 };
 
-export function getDecks() {
-  return decks;
-}
-
 export function getDeck(id) {
   return decks[id];
 }
-
-// export function saveDeckTitle(title) {
-//   return {
-//     ...decks,
-//     [title]: {
-//       title: title,
-//       questions: [],
-//     },
-//   };
-// }
 
 export async function saveDeckTitle(title) {
   const decksAsync = await AsyncStorage.getItem("decksObj");
@@ -76,6 +62,22 @@ export async function saveDeckTitle(title) {
   }
 }
 
-// const addCardToDeck = (title,card)=>{
-//     return decks[title]
-// }
+export async function addCardToDeck(title, card) {
+  const decksFromStorage = await AsyncStorage.getItem("decksObj");
+  const decksObj = JSON.parse(decksFromStorage);
+  const newObj = {
+    ...decksObj,
+    [title]: {
+      ...decksObj[title],
+      questions: [
+        ...decksObj[title].questions,
+        {
+          question: card.question,
+          answer: card.answer,
+        },
+      ],
+    },
+  };
+
+  AsyncStorage.setItem("decksObj", JSON.stringify(newObj));
+}

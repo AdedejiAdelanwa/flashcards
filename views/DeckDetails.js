@@ -23,7 +23,6 @@ export const ButtonWrapper = styled.View`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  width: 250px;
 
   border: 1px solid purple;
   border-radius: 3px;
@@ -35,7 +34,7 @@ const DeckDetails = ({ route, navigation }) => {
   const numOfCards = deck.questions.length;
 
   function routeToNewQuestion() {
-    navigation.navigate("NewCard");
+    navigation.navigate("NewCard", deck);
   }
   function routeToQuiz() {
     navigation.navigate("Quiz");
@@ -52,12 +51,12 @@ const DeckDetails = ({ route, navigation }) => {
             : `${deck.questions.length} Card`}
         </Text>
         <TouchableOpacity onPress={routeToQuiz}>
-          <ButtonWrapper style={{ backgroundColor: "purple" }}>
+          <ButtonWrapper style={{ backgroundColor: "purple", width: 250 }}>
             <Text style={{ color: "#fff" }}>Start Quiz</Text>
           </ButtonWrapper>
         </TouchableOpacity>
         <TouchableOpacity onPress={routeToNewQuestion}>
-          <ButtonWrapper>
+          <ButtonWrapper style={{ width: 250 }}>
             <Text>Add new question</Text>
           </ButtonWrapper>
         </TouchableOpacity>

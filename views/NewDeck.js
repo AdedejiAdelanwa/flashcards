@@ -25,6 +25,7 @@ export const TextInputWrapper = styled.TextInput`
   padding: 15px;
   background-color: #eee;
   border-radius: 3px;
+  margin: 20px 0;
 `;
 
 const NewDeck = ({ navigation }) => {
@@ -54,8 +55,8 @@ const NewDeck = ({ navigation }) => {
           value={title}
           placeholder="Type title here"
           onChangeText={(title) => setTitle(title)}
-          style={{ marginTop: 20, marginBottom: 20 }}
         />
+
         <TouchableOpacity onPress={handleAddDeck}>
           <ButtonWrapper style={{ backgroundColor: "purple" }}>
             <Text style={{ color: "#fff" }}>Create Deck</Text>

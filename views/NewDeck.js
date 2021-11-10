@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import styled from "styled-components";
@@ -26,26 +27,37 @@ export const TextInputWrapper = styled.TextInput`
   border-radius: 3px;
 `;
 
-const NewDeck = () => {
-  const [deckTitle, setDeckTitle] = useState("");
+const NewDeck = ({ navigation }) => {
+  const [title, setTitle] = useState("");
 
-  function handleAddDeck() {
-    saveDeckTitle(deckTitle);
-    setDeckTitle("");
+  async function handleAddDeck() {
+    try {
+      await saveDeckTitle(title);
+      setTitle("");
+      const decksObj = await AsyncStorage.getItem("decksObj");
+      const decks = JSON.parse(decksObj);
+      navigation.navigate("Deck Details", decks.title);
+    } catch (error) {
+      setTitle("");
+      alert(error);
+      // navigation.navigate("Decks");
+    }
   }
+
   return (
     <AddDeckWrapper>
       <AddDeckCard>
         <Text>Deck Title:</Text>
+
         <TextInputWrapper
-          value={deckTitle}
-          placeholder="Type Deck title here"
-          onChangeText={setDeckTitle}
+          value={title}
+          placeholder="Type title here"
+          onChangeText={(title) => setTitle(title)}
           style={{ marginTop: 20, marginBottom: 20 }}
         />
         <TouchableOpacity onPress={handleAddDeck}>
           <ButtonWrapper style={{ backgroundColor: "purple" }}>
-            <Text style={{ color: "#fff" }}>Add</Text>
+            <Text style={{ color: "#fff" }}>Create Deck</Text>
           </ButtonWrapper>
         </TouchableOpacity>
       </AddDeckCard>

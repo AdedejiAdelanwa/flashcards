@@ -36,11 +36,12 @@ const NewDeck = ({ navigation }) => {
       setTitle("");
       const decksObj = await AsyncStorage.getItem("decksObj");
       const decks = JSON.parse(decksObj);
-      navigation.navigate("Deck Details", decks.title);
+
+      navigation.navigate("DeckDetails", decks[title]);
     } catch (error) {
       setTitle("");
       alert(error);
-      // navigation.navigate("Decks");
+      navigation.navigate("Decks");
     }
   }
 

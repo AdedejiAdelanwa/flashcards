@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { View, Text, TouchableOpacity } from "react-native";
 import styled from "styled-components";
@@ -31,10 +31,11 @@ export const ButtonWrapper = styled.View`
 
 const DeckDetails = ({ route, navigation }) => {
   const deck = route.params;
+
   const numOfCards = deck.questions.length;
 
   function routeToNewQuestion() {
-    navigation.navigate("New Card");
+    navigation.navigate("NewCard");
   }
   function routeToQuiz() {
     navigation.navigate("Quiz");

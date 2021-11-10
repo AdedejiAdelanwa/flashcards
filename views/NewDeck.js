@@ -21,10 +21,10 @@ const AddDeckCard = styled.View`
 `;
 
 export const TextInputWrapper = styled.TextInput`
-  width: 250px;
   padding: 15px;
   background-color: #eee;
   border-radius: 3px;
+  margin: 20px 0;
 `;
 
 const NewDeck = ({ navigation }) => {
@@ -36,11 +36,12 @@ const NewDeck = ({ navigation }) => {
       setTitle("");
       const decksObj = await AsyncStorage.getItem("decksObj");
       const decks = JSON.parse(decksObj);
-      navigation.navigate("Deck Details", decks.title);
+
+      navigation.navigate("DeckDetails", decks[title]);
     } catch (error) {
       setTitle("");
       alert(error);
-      // navigation.navigate("Decks");
+      navigation.navigate("Decks");
     }
   }
 
@@ -50,11 +51,12 @@ const NewDeck = ({ navigation }) => {
         <Text>Deck Title:</Text>
 
         <TextInputWrapper
+          style={{ width: 250 }}
           value={title}
           placeholder="Type title here"
           onChangeText={(title) => setTitle(title)}
-          style={{ marginTop: 20, marginBottom: 20 }}
         />
+
         <TouchableOpacity onPress={handleAddDeck}>
           <ButtonWrapper style={{ backgroundColor: "purple" }}>
             <Text style={{ color: "#fff" }}>Create Deck</Text>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { View, Text, TouchableOpacity } from "react-native";
 import styled from "styled-components";
@@ -23,7 +23,6 @@ export const ButtonWrapper = styled.View`
   justify-content: center;
   align-items: center;
   padding: 20px;
-  width: 250px;
 
   border: 1px solid purple;
   border-radius: 3px;
@@ -31,10 +30,11 @@ export const ButtonWrapper = styled.View`
 
 const DeckDetails = ({ route, navigation }) => {
   const deck = route.params;
+
   const numOfCards = deck.questions.length;
 
   function routeToNewQuestion() {
-    navigation.navigate("New Card");
+    navigation.navigate("NewCard", deck);
   }
   function routeToQuiz() {
     navigation.navigate("Quiz");
@@ -44,14 +44,19 @@ const DeckDetails = ({ route, navigation }) => {
     <DetailWrapper>
       <DetailCardWrapper>
         <Text style={{ fontSize: 30 }}> {deck.title}</Text>
-        <Text style={{ fontSize: 20 }}> {numOfCards} Cards</Text>
+        <Text style={{ fontSize: 20 }}>
+          {" "}
+          {deck.questions.length > 1
+            ? `${deck.questions.length} Cards`
+            : `${deck.questions.length} Card`}
+        </Text>
         <TouchableOpacity onPress={routeToQuiz}>
-          <ButtonWrapper style={{ backgroundColor: "purple" }}>
+          <ButtonWrapper style={{ backgroundColor: "purple", width: 250 }}>
             <Text style={{ color: "#fff" }}>Start Quiz</Text>
           </ButtonWrapper>
         </TouchableOpacity>
         <TouchableOpacity onPress={routeToNewQuestion}>
-          <ButtonWrapper>
+          <ButtonWrapper style={{ width: 250 }}>
             <Text>Add new question</Text>
           </ButtonWrapper>
         </TouchableOpacity>

@@ -16,7 +16,7 @@ const DeckWrapper = styled.View`
 
 const Deck = ({ deck, navigation }) => {
   function routeToDetails() {
-    navigation.navigate("Deck Details", deck);
+    navigation.navigate("DeckDetails", deck);
   }
   return (
     <TouchableOpacity onPress={routeToDetails}>

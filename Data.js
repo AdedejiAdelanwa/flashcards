@@ -41,13 +41,24 @@ export const decks = {
   },
 };
 
-export function getDeck(id) {
-  return decks[id];
+export async function getDeck(id) {
+  const decksFromStorage = await AsyncStorage.getItem("decksObj");
+  const decksObj = JSON.parse(decksFromStorage);
+  return decksObj[id];
 }
 
+export async function getDecks() {
+  try {
+    const decksFromStorage = await AsyncStorage.getItem("decksObj");
+    const data = JSON.parse(decksFromStorage);
+    return data;
+  } catch (error) {
+    alert(error);
+  }
+}
 export async function saveDeckTitle(title) {
-  const decksAsync = await AsyncStorage.getItem("decksObj");
-  const decksObj = JSON.parse(decksAsync);
+  const decksFromStorage = await AsyncStorage.getItem("decksObj");
+  const decksObj = JSON.parse(decksFromStorage);
   if (Object.keys(decksObj).includes(title)) {
     throw new Error("A deck with this name already exist");
   } else {

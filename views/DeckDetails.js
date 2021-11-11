@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import styled from "styled-components";
+
+import { getDeck } from "../Data";
 
 const DetailWrapper = styled.View`
   flex: 1;
@@ -30,25 +31,31 @@ export const ButtonWrapper = styled.View`
 
 const DeckDetails = ({ route, navigation }) => {
   const deck = route.params;
-
+  const [deckie, setDeckie] = useState({});
   const numOfCards = deck.questions.length;
+
+  async function fetchDeck() {
+    const data = await getDeck(deck.title);
+    setDeckie(data);
+  }
 
   function routeToNewQuestion() {
     navigation.navigate("NewCard", deck);
   }
   function routeToQuiz() {
-    navigation.navigate("Quiz");
+    navigation.navigate("Quiz", deck);
   }
+  useEffect(() => {
+    fetchDeck();
+  }, []);
 
   return (
     <DetailWrapper>
       <DetailCardWrapper>
-        <Text style={{ fontSize: 30 }}> {deck.title}</Text>
+        <Text style={{ fontSize: 30 }}> {deckie.title}</Text>
         <Text style={{ fontSize: 20 }}>
           {" "}
-          {deck.questions.length > 1
-            ? `${deck.questions.length} Cards`
-            : `${deck.questions.length} Card`}
+          {numOfCards > 1 ? `${numOfCards} Cards` : `${numOfCards} Card`}
         </Text>
         <TouchableOpacity onPress={routeToQuiz}>
           <ButtonWrapper style={{ backgroundColor: "purple", width: 250 }}>

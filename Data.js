@@ -1,4 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Notifications from "expo-notifications";
+
+const NOTIFICATION_KEY = "flashcard:notifications";
 
 export const decks = {
   React: {
@@ -92,3 +95,27 @@ export async function addCardToDeck(title, card) {
 
   AsyncStorage.setItem("decksObj", JSON.stringify(newObj));
 }
+
+//  function clearLocalNotifications(){
+
+// }
+
+//  function createNotification(){
+//    return {
+//      title: "Take a quiz",
+//      body: "do not forget to take at least a quiz today",
+//      ios:{
+//        sound: true
+//      }
+//    }
+//  }
+
+// export function setLocalNotifications(){
+//   AsyncStorage.getItem(NOTIFICATION_KEY)
+//   .then(JSON.parse)
+//   .then((data)=>{
+//     if(data === null){
+//       Notifications.perm
+//     }
+//   })
+// }

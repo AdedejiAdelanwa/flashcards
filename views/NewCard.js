@@ -29,7 +29,7 @@ const NewCard = ({ route, navigation }) => {
       });
       setAnswerText("");
       setQuestionText("");
-      navigation.navigate("Decks", deck);
+      navigation.navigate("Decks");
     } catch (error) {
       alert(error);
     }

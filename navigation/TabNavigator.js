@@ -16,7 +16,7 @@ const TabNavigator = () => {
 
           if (route.name === "Decks") {
             iconName = focused ? "file-tray-full" : "file-tray-full-outline";
-          } else if (route.name === "AddDeck") {
+          } else if (route.name === "NewDeck") {
             iconName = focused ? "add-circle" : "add-circle-outline";
           }
 
@@ -28,7 +28,7 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen name="Decks" component={Decks} />
-      <Tab.Screen name="AddDeck" component={NewDeck} />
+      <Tab.Screen name="NewDeck" component={NewDeck} />
     </Tab.Navigator>
   );
 };
